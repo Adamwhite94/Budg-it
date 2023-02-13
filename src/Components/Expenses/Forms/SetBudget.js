@@ -11,17 +11,17 @@ import { useNavigate } from "react-router-dom";
 function SetBudget() {
   const navigate = useNavigate();
   const budget = {
-    value: "",
+    amount: "",
   };
-  const [values, setValues] = useState(budget);
+  const [budgetvalue, setBudgetValue] = useState(budget);
   const [budgetsent, setBudgetSent] = useState(false);
 
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
 
-    setValues({
-      ...values,
+    setBudgetValue({
+      ...budgetvalue,
       [name]: value,
     });
     setBudgetSent(true);
@@ -29,7 +29,7 @@ function SetBudget() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/user", { state: { values, budgetsent } });
+    navigate("/user", { state: { budgetvalue, budgetsent } });
     //how to pass a state confirming that data has been sent ? is their a better way?
   };
 
@@ -42,7 +42,7 @@ function SetBudget() {
           </ExpensesLabel>
           <ExpensesInputs 
           type="number" 
-          value={values.value}
+          value={budgetvalue.amount}
           onChange={handleInputChange}
           name="value"
           label="Value"

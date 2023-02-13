@@ -8,6 +8,7 @@ align-items: center;
 flex-direction: column;
 width: 20rem;
 height: 30rem;
+
 `;
 
 const ExpensesInputsContainerHighLow = styled.div`
@@ -24,6 +25,7 @@ outline: none;
 background: none;
 transition: padding 0.3s 0.2s ease;
 color: #fff;
+
 
 &:focus {
     padding-bottom: 5px;

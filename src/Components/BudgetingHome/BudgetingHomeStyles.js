@@ -60,18 +60,36 @@ const CardContainer = styled.div`
 display:flex;
 align-items: center;
 justify-content: center;
+height: 70vh;
+
 `;
 const CardElements = styled.div`
 display:grid;
-grid-template-columns: repeat(2, 12rem);
+grid-template-columns: repeat(2, 20rem);
+grid-column-gap: 2rem;
+grid-row-gap: 2rem;
+
 `;
 const Card = styled.div`
-background-color: white;
-width: 10rem;
-height: 15rem;
-border-radius: 10%;
-text-align: center;
-font-size: 1.5rem;
+background-color: #211522;
+color: #fff;
+width: 20rem;
+height:10rem;
+display:flex;
+font-size: 1.2rem;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+background:transparent;
+
+border-radius: 2rem;
+border: 1px solid white;
+letter-spacing: 1px;
+  font-weight: 1000;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+  outline: none;
+ 
 `;
 
 const BudgetTitle = styled.h1`
@@ -81,7 +99,33 @@ const BudgetButtonContainer = styled.div`
 padding-right: 1rem;
 `;
 
-
+const CardTitle = styled.h3``;
+const CardValue = styled.h4``;
+const CardButton = styled.button`
+background-color: #211522;
+color: #fff;
+width: 13rem;
+height:4rem;
+display:flex;
+font-size: 0.8rem;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+background: transparent;
+border-radius: 2rem;
+border: 1px solid white;
+letter-spacing: 1px;
+  font-weight: 1000;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+  &:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+  }
+`;
 
 export {
     BudgetContainer,
@@ -94,5 +138,8 @@ export {
     CardElements,
     Card,
     BudgetTitle,
-    BudgetButtonContainer
+    BudgetButtonContainer,
+    CardTitle,
+    CardValue,
+    CardButton
 }

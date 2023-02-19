@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   ExpensesInputsContainer,
   ExpensesInputs,
@@ -10,118 +10,92 @@ import {
   ExpenseFormHeader,
 } from "../ExpensesStyles";
 import { useNavigate } from "react-router-dom";
+import { GainedContext, SpentContext } from "../Context/Contexts";
+
 
 function NewEntry() {
-  const navigate = useNavigate();
-  const initialValues = {
-    value: "",
-    subject: "",
-  };
-  const [values, setValues] = useState(initialValues);
+  const { value, setValue } = useContext(GainedContext);
+  const { loss, setLoss } = useContext(SpentContext);
 
+  let navigate = useNavigate();
+  const [gainedform, toggleGainedForm] = useState(false);
   const [expenseform, toggleExpenseForm] = useState(false);
-  const [moneygained, toggleMoneyGainedForm] = useState(false);
   const [optionsbuttons, displayOptionsButtons] = useState(true);
-  const [valuecheck, setValueCheck] = useState(false);
 
   const toggleExpense = () => {
-    toggleExpenseForm(true);
+    toggleGainedForm(true);
     displayOptionsButtons(false);
   };
   const toggleMoneyGained = () => {
-    toggleMoneyGainedForm(true);
+    toggleExpenseForm(true);
     displayOptionsButtons(false);
   };
+  //logic for buttons
 
-  const handleInputChange = (e) => {
+  //pretty sure all to do is pass the value into the expense file and its done
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
-
-    setValues({
-      ...values,
-      [name]: value,
-    });  
-    setValueCheck(true);
+    navigate("/user");
   };
-
-  const handleSubmit = (e) =>{
-    e.preventDefault();
-    navigate('/user', {state:{values, valuecheck}})
-      //how to pass a state confirming that data has been sent ? is their a better way?
-  }
 
   return (
     <ExpensesInputsContainer>
       {optionsbuttons ? (
         <ExpensesButtonsContainer>
           <ExpensesButton onClick={(e) => toggleExpense(e)}>
-            I <u>Spent money</u>
+            I <u>Earned</u> Money
           </ExpensesButton>
           <ExpensesButton onClick={(e) => toggleMoneyGained(e)}>
-            I <u>Earned money</u>
+            I <u>Spent</u> Money
           </ExpensesButton>
         </ExpensesButtonsContainer>
       ) : null}
 
       {/* Rendered after the selection above  */}
 
-      {expenseform ? (
+      {gainedform ? (
         <>
-          <ExpensesForm id="expenseform" onSubmit={(e)=>handleSubmit(e)}>
-            <ExpensesLabel htmlFor="amount">Value spent in (AUD)</ExpensesLabel>
+          <ExpensesForm id="gainedform" onSubmit={(e) => handleSubmit(e)}>
+            <ExpensesLabel htmlFor="amount">
+              Value gained in (AUD)
+            </ExpensesLabel>
             <ExpensesInputs
               type="number"
               id="amount"
-              placeholder="Value Spent"
-              value={values.value}
-              onChange={handleInputChange}
+              placeholder="Value Gained"
+              defaultValue={value}
+              onChange={(e) => {
+                setValue(e.target.value)
+              }}
               name="value"
               label="Value"
             />
-
-            <ExpensesLabel htmlFor="whaton"> What did you spend this amount on? </ExpensesLabel>
-            <ExpensesInputs 
-            type="input" 
-            id="whaton" 
-            value={values.subject}
-            onChange={handleInputChange}
-            name="subject"
-            label="Subject"
-            />
-
           </ExpensesForm>
-          <SubmitButton type="submit" form="expenseform">Submit</SubmitButton>
+          <SubmitButton type="submit" form="gainedform">
+            Submit
+          </SubmitButton>
         </>
       ) : null}
 
-      {moneygained ? (
+      {expenseform ? (
         <>
-          <ExpensesForm id="moneygainedform" onSubmit={(e)=>handleSubmit(e)}>
+          <ExpensesForm id="expenseform" onSubmit={(e) => handleSubmit(e)}>
             <ExpensesLabel htmlFor="amount">
-              Enter a value gained in (AUD)
+              Enter a value Spent in (AUD)
             </ExpensesLabel>
-            <ExpensesInputs 
-            type="number" 
-            id="amount" 
-            placeholder="$(AUD)" 
-            value={values.value}
-            onChange={handleInputChange}
-            name="value"
-            label="Value"
-            />
-            <ExpensesLabel htmlFor="gainedfrom">
-              Where did you gain this money from?
-            </ExpensesLabel>
-            <ExpensesInputs 
-            type="input" 
-            id="gainedfrom" 
-            value={values.subject}
-            onChange={handleInputChange}
-            name="subject"
-            label="Subject"
+            <ExpensesInputs
+              type="number"
+              id="amount"
+              placeholder="Enter a value spent"
+              defaultValue={loss}
+              onChange={(e) => {
+                setLoss(e.target.value);
+              }}
+              name="value"
+              label="Value"
             />
           </ExpensesForm>
-          <SubmitButton type="submit" form="moneygainedform">
+          <SubmitButton type="submit" form="expenseform">
             Submit
           </SubmitButton>
         </>

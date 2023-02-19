@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, createContext} from "react";
 import { Outlet } from "react-router-dom";
 import {
   ExpensesContainer,
   ExpensesElements,
-  ExpensesInputsContainerHighLow,
   ExpensesTitle,
   ExpensesLanes,
   ExpensesButtonsContainer,
@@ -15,10 +14,17 @@ import { BsPen } from "react-icons/bs";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import NewEntry from "./Forms/NewEntry";
 import SetBudget from './Forms/SetBudget'
+
+
+
+
 function Expenses() {
+
+
   const [buttons, displayButtons] = useState(true);
   const [expense, displayExpense] = useState(false);
   const [budget, displayBudget] = useState(false);
+
 
   const newEntry = () => {
       displayButtons(false);
@@ -30,6 +36,8 @@ function Expenses() {
     displayBudget(true);
     
   }
+
+
 
   return (
     <ExpensesContainer>
@@ -52,7 +60,13 @@ function Expenses() {
         </ExpensesButtonsContainer>:null}
        
         <ExpensesLanes>
-        {expense === true ?   <NewEntry />:null}
+        {expense === true ?
+
+        <NewEntry/>
+    
+       
+      
+        :null}
         {budget === true ? <SetBudget />:null}
         </ExpensesLanes>
              {/* <ExpensesInputsContainerHighLow>

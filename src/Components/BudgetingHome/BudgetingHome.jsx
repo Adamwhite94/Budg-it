@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import {
   BudgetContainer,
   BudgetElements,
@@ -17,16 +17,25 @@ import {
 } from "./BudgetingHomeStyles";
 import BudgetHomeBg from "../../Images/hdbg5.jpg";
 import { AiFillDollarCircle, AiFillMail } from "react-icons/ai";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { budgetContext, GainedContext, SpentContext } from "../Expenses/Context/Contexts";
+
+
+
 
 function BudgetingHome() {
+  const {value} = useContext(GainedContext);
+  const {loss} = useContext(SpentContext);
+  const {budget} = useContext(budgetContext);
 
-  const location = useLocation();
-  console.log(location);
+  const [budgetword, setBudgetWord] = useState('Neutral')
+
+
   let navigate = useNavigate();
 
 
-  //super messy and needs more work, look into redux
+
+ 
 
   return (
     <BudgetContainer>
@@ -47,31 +56,25 @@ function BudgetingHome() {
         <CardContainer>
           <CardElements>
             <Card>
+       
             <CardTitle>Current Profits</CardTitle>
-            <CardValue>$0</CardValue>
-              {/* {location.state.valuecheck ? (
-                <div>
-                  <h3>${location.state.values.value}</h3>
-                  <h3>{location.state.values.subject}</h3>
-                </div>
-              ) : null} */}
-              {/* need a check for default off but turn on when state is sent */}
+          
+            <CardValue>${value}</CardValue>
+         
             </Card>
             <Card>
             <CardTitle>Current Losses</CardTitle>
-            <CardValue>$0</CardValue>
+            <CardValue>${loss}</CardValue>
             </Card>
             <Card>
               <CardTitle>Current Budget</CardTitle>
-                <CardValue>$0</CardValue>
-              {/* {location.state.budgetsent ? (
-                <div>{location.state.budgetvalue.amount}</div>
-              ) : null} */}
+                <CardValue>${budget}</CardValue>
+            
             </Card>
             <Card>
-            <CardTitle>Budget Chart</CardTitle>
-            <CardButton>Generate a customized chart</CardButton> 
-            {/* Maybe */}
+            <CardTitle>{budgetword}</CardTitle>
+            <CardValue>Currently you are {budgetword}</CardValue>
+            
             </Card>
           </CardElements>
         </CardContainer>

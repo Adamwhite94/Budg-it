@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect} from "react";
 import {
   BudgetContainer,
   BudgetElements,
@@ -18,20 +18,25 @@ import {
 import BudgetHomeBg from "../../Images/hdbg5.jpg";
 import { AiFillDollarCircle, AiFillMail } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import {
-  budgetContext,
-  GainedContext,
-  SpentContext,
-} from "../Expenses/Context/Contexts";
+
 
 function BudgetingHome() {
-  const { value } = useContext(GainedContext);
-  const { loss } = useContext(SpentContext);
-  const { budget } = useContext(budgetContext);
+  const gainedValue = JSON.parse((localStorage.getItem('gainedvalue')));
+  const spentValue = JSON.parse((localStorage.getItem('spentvalue')));
+  const budgetValue = JSON.parse((localStorage.getItem('budgetvalue')));
 
   const [budgetword, setBudgetWord] = useState("Neutral");
 
   let navigate = useNavigate();
+
+  useEffect(()=>{
+    gainedValue >= budgetValue ? setBudgetWord('Positive'):setBudgetWord('Neutral');
+ 
+  });
+
+  useEffect(()=>{
+    spentValue < budgetValue ? setBudgetWord('Positive'):setBudgetWord('Negative');
+  })
 
   return (
     <BudgetContainer>
@@ -53,15 +58,15 @@ function BudgetingHome() {
             <Card>
               <CardTitle>Current Profits</CardTitle>
 
-              <CardValue>${value}</CardValue>
+              <CardValue>${gainedValue}</CardValue>
             </Card>
             <Card>
               <CardTitle>Current Losses</CardTitle>
-              <CardValue>${loss}</CardValue>
+              <CardValue>${spentValue}</CardValue>
             </Card>
             <Card>
               <CardTitle>Current Budget</CardTitle>
-              <CardValue>${budget}</CardValue>
+              <CardValue>${budgetValue}</CardValue>
             </Card>
             <Card>
               <CardTitle>{budgetword}</CardTitle>

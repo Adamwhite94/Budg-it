@@ -12,7 +12,7 @@ import { budgetContext } from "../Context/Contexts";
 function SetBudget() {
   const navigate = useNavigate();
  
-  const { budget, setBudget } = useContext(budgetContext);
+  const { budget, storeBudget } = useContext(budgetContext);
  
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ function SetBudget() {
           type="number" 
           value={budget}
           onChange={(e)=>{
-            setBudget(e.target.value)
+          storeBudget(e.target.value)
           }}
           name="value"
           label="Value"

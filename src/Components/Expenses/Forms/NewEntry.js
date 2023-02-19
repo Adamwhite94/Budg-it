@@ -14,8 +14,8 @@ import { GainedContext, SpentContext } from "../Context/Contexts";
 
 
 function NewEntry() {
-  const { value, setValue } = useContext(GainedContext);
-  const { loss, setLoss } = useContext(SpentContext);
+  const { value, storeValue } = useContext(GainedContext);
+  const { loss, storeSpentValue } = useContext(SpentContext);
 
   let navigate = useNavigate();
   const [gainedform, toggleGainedForm] = useState(false);
@@ -65,7 +65,7 @@ function NewEntry() {
               placeholder="Value Gained"
               defaultValue={value}
               onChange={(e) => {
-                setValue(e.target.value)
+                storeValue(e.target.value)
               }}
               name="value"
               label="Value"
@@ -89,7 +89,7 @@ function NewEntry() {
               placeholder="Enter a value spent"
               defaultValue={loss}
               onChange={(e) => {
-                setLoss(e.target.value);
+                storeSpentValue(e.target.value);
               }}
               name="value"
               label="Value"

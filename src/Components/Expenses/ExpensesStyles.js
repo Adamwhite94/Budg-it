@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Background from "../../Images/hdbg15.jpg";
+import { device } from "../Breakpoints/Breakpoints";
 
 const ExpensesContainer = styled.div`
 background-image: url(${Background});
@@ -33,7 +34,16 @@ border-bottom:2px solid grey;
 outline: none;
 
 color: black;
+@media only screen and (${device.mobileMSmallerBP}) and (${device.mobileM}) {
+  width: 18rem;
+}
+@media only screen and (${device.mobileLSmallerBP}) and (${device.pixelBP}) {
+  width: 18rem;
+}  
 
+@media only screen and (${device.mobileLSmallerBP}) and (${device.mobileL}) {
+  width: 18rem;
+ }
 `;
 const ExpensesTitle = styled.h1`
 color: #fff;
@@ -79,6 +89,18 @@ letter-spacing: 2px;
 const ExpensesLabel = styled.label`
 font-size: 1.8rem;
 color: #fff;
+@media only screen and (${device.mobileMSmallerBP}) and (${device.mobileM}) {
+  font-size: 1.3rem;
+} 
+@media only screen and (${device.mobileLSmallerBP}) and (${device.pixelBP}) {
+  font-size: 1.3rem;
+} 
+@media only screen and (${device.mobileLSmallerBP}) and (${device.mobileL}) {
+  font-size: 1.3rem;
+ }
+ @media only screen and (${device.tabletSmallerBP}) and (${device.tablet}) {
+  font-size: 1.3rem;
+}
 
 `;
 const ExpensesForm = styled.form`
@@ -92,7 +114,23 @@ gap: 2rem;
 border:3px solid white;
 width: 40rem;
 height: 30rem;
+@media only screen and (${device.mobileMSmallerBP}) and (${device.mobileM}) {
+width: 20rem;
+height: 20rem;
+} 
+@media only screen and (${device.mobileLSmallerBP}) and (${device.pixelBP}) {
+  width: 20rem;
+height: 20rem;
+} 
 
+@media only screen and (${device.mobileLSmallerBP}) and (${device.mobileL}) {
+  width: 20rem;
+height: 20rem;
+ }
+ @media only screen and (${device.tabletSmallerBP}) and (${device.tablet}) {
+  width: 30rem;
+height: 25rem;
+}
 
 `;
 

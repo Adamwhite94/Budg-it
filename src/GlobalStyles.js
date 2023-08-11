@@ -7,7 +7,7 @@ body{
     padding:0;
     overflow-x: hidden;
     background-color: black;
-    font-family: 'Righteous', cursive;
+    font-family: 'Raleway', sans-serif;
 
    overflow:hidden;
 }

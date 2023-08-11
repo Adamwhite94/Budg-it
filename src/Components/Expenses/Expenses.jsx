@@ -9,7 +9,7 @@ import {
   ExpensesButton,
   ExpenseBackground,
 } from "./ExpensesStyles";
-import Background from "../../Images/hdbg6.jpg";
+
 import { BsPen } from "react-icons/bs";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import NewEntry from "./Forms/NewEntry";
@@ -41,9 +41,9 @@ function Expenses() {
 
   return (
     <ExpensesContainer>
-      <ExpenseBackground src={Background} alt="financebg" />
+ 
       <ExpensesElements>
-        <ExpensesTitle>Budg-It (Manage Your Expenses)</ExpensesTitle>
+        <ExpensesTitle>Budg-It (Manage Your Budget)</ExpensesTitle>
 
     { buttons?
         <ExpensesButtonsContainer>

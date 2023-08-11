@@ -2,9 +2,9 @@ import { useState, useEffect} from "react";
 import {
   BudgetContainer,
   BudgetElements,
-  BudgetNav,
-  BudgetNavList,
-  BudgetNavListElements,
+
+
+  BudgetButton,
   BudgetBackground,
   CardContainer,
   CardElements,
@@ -13,9 +13,9 @@ import {
   BudgetButtonContainer,
   CardTitle,
   CardValue,
-  CardButton,
+
 } from "./BudgetingHomeStyles";
-import BudgetHomeBg from "../../Images/hdbg5.jpg";
+
 import { AiFillDollarCircle, AiFillMail } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
@@ -40,21 +40,12 @@ function BudgetingHome() {
 
   return (
     <BudgetContainer>
-      <BudgetBackground src={BudgetHomeBg} alt="hallway" />
       <BudgetElements>
-        <BudgetNav>
-          <BudgetNavList>
-            <BudgetTitle>Budg-it</BudgetTitle>
-            <BudgetButtonContainer>
-              <BudgetNavListElements onClick={() => navigate("/user/expenses")}>
-                <AiFillDollarCircle size={40} />
-              </BudgetNavListElements>
-            </BudgetButtonContainer>
-          </BudgetNavList>
-        </BudgetNav>
+  
 
         <CardContainer>
           <CardElements>
+          <BudgetTitle>Budg-it</BudgetTitle>
             <Card>
               <CardTitle>Current Profits</CardTitle>
 
@@ -72,6 +63,10 @@ function BudgetingHome() {
               <CardTitle>{budgetword}</CardTitle>
               <CardValue>Currently you are {budgetword}</CardValue>
             </Card>
+            <BudgetButtonContainer>
+              <BudgetButton onClick={() => navigate("/user/expenses")} >Manage Your Budget</BudgetButton>
+                
+            </BudgetButtonContainer>
           </CardElements>
         </CardContainer>
       </BudgetElements>
